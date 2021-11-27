@@ -1,3 +1,6 @@
 # App useless
 
+node_modules/
+
 commands
+src/.env 
