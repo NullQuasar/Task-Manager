@@ -30,7 +30,7 @@ UserSchema.methods.passwEncrypt = async (pass) => {
     return await bcrypt.hash(pass, Salt);
 };
 
-UserSchema.methods.passwEncrypt = async function(pass) {
+UserSchema.methods.passwAuth = async function(pass) {
     // Compare passwords (validate user)
 
     return await bcrypt.compare(pass, this.passw); // Return: bool
