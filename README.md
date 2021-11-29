@@ -1,4 +1,4 @@
-# Time Managemet app
+# Time Managemet App
 
 Just add your tasks, its time and the app will do the rest for you.
 
@@ -9,26 +9,25 @@ This app requires you to configure some enviroment variables with the required d
 
 1. Go to the src/ folder
 2. Create a new file named `.env`
-3. Inside the file put the following data:
+3. Inside the file type the following data:
 ```
-HOST=your_host
-DATABASE=TimeManagerApp 
+HOST=<your_host>
+DATABASE=TimeManagerApp
 ```
 That's all.
 
-# Start app
+# Execute
 
 1. Go into the project folder
 2. Open the terminal
-3. Install dependencies: $ `npm i`
-4. Start app: `node src/index.js`
+3. Install dependencies: `$ npm i`
+4. Start app: `$ node src/index.js`
 5. Open the url in your browser
 
-### Technologies:
+### Main Technologies:
 - Nodejs
 - Express
 - Mongodb
-- 
 
 
 # Created by: NullQuasar (Andrés M)
