@@ -3,4 +3,4 @@
 node_modules/
 
 commands
-src/.env 
+.env 

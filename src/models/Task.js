@@ -5,11 +5,11 @@ const TimeManagerSchema = new Schema({
         type: String,
         required: false
     },
-    task: {
+    description: {
         type: String,
         required: true
     },
-    date: {
+    deadline: {
         type: Date,
         required: true
     }

@@ -1,6 +1,8 @@
 const path = require('path');
 const { engine } = require('express-handlebars');
 
+const morgan = require('morgan');
+
 const express = require("express");
 // const { setRandomFallback } = require('bcryptjs');
 // const { RSA_NO_PADDING } = require('constants');
@@ -26,9 +28,11 @@ app.set('view engine', '.hbs');
 
 //Middlewares
 app.use(express.urlencoded({extended: false}));
+app.use(morgan('tiny'));
 
 // Routes
 app.use(require('./routes/index.routes'));
+app.use(require('./routes/tasks.routes'));
 
 // Static
 app.use(express.static(path.join(__dirname, 'public')));
