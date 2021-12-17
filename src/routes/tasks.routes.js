@@ -3,11 +3,9 @@ const router = Router();
 
 const { 
     renderTasks,
+    createTaskPost,
     editTask,
     editTaskPut,
-    createTask,
-    createTaskPost,
-    deleteTask,
     deleteTaskDel,  
 } = require('../controllers/tasks.controllers');
 
@@ -15,15 +13,9 @@ const {
 // Show Tasks
 router.get('/tasks', renderTasks);
 
-
-router.get('/tasks/create', createTask);
 router.post('/tasks/create/', createTaskPost);
-
-
-router.get('/tasks/edit', editTask);
+router.post('/tasks/edit/:id', editTask);
 router.put('/tasks/edit/:id', editTaskPut);
-
-router.get('/tasks/delete', deleteTask);
 router.delete('/tasks/delete/:id', deleteTaskDel)
 
 

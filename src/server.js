@@ -7,6 +7,8 @@ const express = require("express");
 // const { setRandomFallback } = require('bcryptjs');
 // const { RSA_NO_PADDING } = require('constants');
 
+const methodOverride = require('method-override');
+
 // Init app
 const app = express();
 
@@ -29,6 +31,7 @@ app.set('view engine', '.hbs');
 //Middlewares
 app.use(express.urlencoded({extended: false}));
 app.use(morgan('tiny'));
+app.use(methodOverride('_method'));
 
 // Routes
 app.use(require('./routes/index.routes'));

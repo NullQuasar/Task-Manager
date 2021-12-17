@@ -1,24 +1,30 @@
-
-<div class="col-md-3 mx-auto">
-    <div class="card rounded-top border border-primary text-center">
-        <div class="card-header">
-            <h4 class="card-title">New Task</h4>
-        </div>
-        <div class="card-body">
-            <form action="/tasks/create" method="POST">
-                <div class="form-group">
-                    <input type="text" name="title" class="form-control" placeholder="Title" autofocus>
+<div class="task">
+    <div class="row">
+        {{>new-task}}
+        
+        {{#each tasks}}
+            <div class="col-md-3">
+                <div class="card rounded-top border border-primary text-center" style="height: 312px;">
+                    <div class="card-header">
+                        <h4 class="card-title">{{title}}</h4>
+                    </div>
+                    <div class="card-body">
+                        <form method="POST">
+                            <div class="form-group">
+                                <textarea name="description" class="form-control" readonly="true">{{description}}</textarea>
+                            </div>
+                            <div class="form-group mt-2">
+                                <input type="date" name="deadline" class="form-control" value="{{deadline}}" readonly="true" />
+                            </div>
+                            <div class="form-group mt-5">
+                                <input type="hidden" name="_method">
+                                <button class="btn btn-primary btn-block" formaction="/tasks/edit/{{_id}}">Edit</button>
+                                <button class="btn btn-danger btn-block" formaction="/tasks/delete/{{_id}}?_method=DELETE">Delete</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-                <div class="form-group my-2">
-                    <textarea name="description" placeholder="Task description" class="form-control"></textarea>
-                </div>
-                <div class="form-group">
-                    <input type="date" name="deadline" class="form-control">
-                </div>
-                <div class="form-group mt-3">
-                    <button class="btn btn-primary btn-block">Save</button>
-                </div>
-            </form>
-        </div>
+            </div>
+        {{/each}}
     </div>
 </div>

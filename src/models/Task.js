@@ -18,4 +18,4 @@ const TimeManagerSchema = new Schema({
     timestamps: true,
 });
 
-module.exports = model('TimeManager', TimeManagerSchema);
+module.exports = model('Task', TimeManagerSchema);
