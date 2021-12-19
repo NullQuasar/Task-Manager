@@ -1,9 +1,23 @@
 /* General custom styles */
 
+
+/* Task styles */
 .task form textarea {
     resize: none;
 }
 
 .task textarea.form-control, .task input:read-only {
     background-color: #fff;
+}
+
+
+
+/* Message box styles */
+.alert-msg {
+    width: 340px;
+    height: 140px;
+    left: 25px;
+    box-shadow: -4px 7px 5px 0px rgba(0,0,0,0.16);
+    -webkit-box-shadow: -4px 7px 5px 0px rgba(0,0,0,0.16);
+    -moz-box-shadow: -4px 7px 5px 0px rgba(0,0,0,0.16);
 }

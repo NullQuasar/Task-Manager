@@ -15,11 +15,29 @@ tasksCtrls.renderTasks = async (req, res) => {
 
 // Post
 tasksCtrls.createTaskPost = async (req, res) => {
-    console.log(req.body);
+
     const {title, description, deadline} = req.body;
-    const task = new Task({title, description, deadline});
-    await task.save() // Save in db
-    res.redirect('/tasks');
+    
+    if (title || description || deadline) {
+
+        if (!deadline) {
+            const today = new Date()
+            deadline = new Date();
+            deadline.setDate(today.getDate() + 1);
+        }
+        console.log(deadline);
+
+        const task = new Task({title, description, deadline});
+        await task.save() // Save in db
+        
+        req.flash('success_msg', 'The task has been created');
+        res.redirect('/tasks');
+    }
+    
+    else {
+        req.flash('danger_msg', 'The task must have any content!');
+        res.redirect('/tasks');
+    }
 };
 
 
@@ -35,9 +53,9 @@ tasksCtrls.editTask = async (req, res) => {
 
 tasksCtrls.editTaskPut = async (req, res) => {
     const { title, description, deadline } = req.body;
-    console.log(req.body);
     await Task.findByIdAndUpdate(req.params.id, { title, description, deadline });
 
+    req.flash('success_msg', `${title} has been updated`);
     res.redirect('/tasks');
 };
 
@@ -47,6 +65,7 @@ tasksCtrls.deleteTaskDel = async (req, res) => {
     if (req.params.id){
         await Task.findByIdAndDelete(req.params.id);
     }
+    req.flash('danger_msg', 'The task has been deleted');
     res.redirect('/tasks');
 };
 
