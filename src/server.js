@@ -45,6 +45,7 @@ app.use(flash());
 app.use((req, res, next) => {
     res.locals.success_msg = req.flash('success_msg');
     res.locals.danger_msg = req.flash('danger_msg');
+    res.locals.error_msg = req.flash('error_msg');
     next();
 }) 
 
@@ -52,6 +53,7 @@ app.use((req, res, next) => {
 // Routes
 app.use(require('./routes/index.routes'));
 app.use(require('./routes/tasks.routes'));
+app.use(require('./routes/users.routes'));
 
 // Static
 app.use(express.static(path.join(__dirname, 'public')));
