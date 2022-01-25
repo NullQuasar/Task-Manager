@@ -16,9 +16,12 @@ tasksCtrls.renderTasks = async (req, res) => {
 // Post
 tasksCtrls.createTaskPost = async (req, res) => {
 
-    const {title, description, deadline} = req.body;
+    let {title, description, deadline} = req.body;
     
     if (title || description || deadline) {
+
+        if (!title)
+            title = 'No title';
 
         if (!deadline) {
             const today = new Date()
