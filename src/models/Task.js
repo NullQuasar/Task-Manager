@@ -7,7 +7,7 @@ const TimeManagerSchema = new Schema({
     },
     description: {
         type: String,
-        required: true
+        required: false
     },
     deadline: {
         type: Date,

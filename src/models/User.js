@@ -13,7 +13,8 @@ const UserSchema = new Schema({
     },
     email: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     }
 
 }, {
@@ -36,4 +37,4 @@ UserSchema.methods.passwAuth = async function(pass) {
     return await bcrypt.compare(pass, this.passw); // Return: bool
 };
 
-module.exports = model('TimeManager', UserSchema);
+module.exports = model('user', UserSchema);
