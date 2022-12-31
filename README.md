@@ -6,7 +6,7 @@ Just add your tasks, its time and the app will do the rest for you.
 # Database and enviroment variables
 
 This project works with mongodb, you will need to download [MongoDB commnity edition](https://www.mongodb.com/try/download/community)<br/>
-This app requires you to configure some enviroment variables with the required data. Follow the process below.
+This app requires you to configure some enviroment variables with the required data. Follow the instructions below.
 
 1. Go to the src/ folder
 2. Create a new file named `.env`
@@ -24,7 +24,7 @@ That's all.
 3. Install dependencies: `$ npm i`
 4. Start database: `$ mongod`
 5. Start app: `$ node src/index.js`
-6. Open the url in your browser
+6. Open the url in your browser (usually localhost:4000)
 
 ### Main Technologies:
 - Nodejs
