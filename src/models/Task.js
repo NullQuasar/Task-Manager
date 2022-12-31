@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose');
 
-const TimeManagerSchema = new Schema({
+const TaskManagerSchema = new Schema({
     title: {
         type: String,
         required: false
@@ -12,10 +12,14 @@ const TimeManagerSchema = new Schema({
     deadline: {
         type: Date,
         required: true
+    },
+    owner: {
+        type: String,
+        required: true
     }
 
 }, {
     timestamps: true,
 });
 
-module.exports = model('Task', TimeManagerSchema);
+module.exports = model('Task', TaskManagerSchema);

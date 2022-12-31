@@ -1,4 +1,4 @@
-# Time Managemet App
+# Task Managemet App
 
 Just add your tasks, its time and the app will do the rest for you.
 
@@ -12,7 +12,7 @@ This app requires you to configure some enviroment variables with the required d
 3. Inside the file type the following data:
 ```
 HOST=<your_host>
-DATABASE=TimeManagerApp
+DATABASE=TaskManager
 ```
 That's all.
 
@@ -21,8 +21,9 @@ That's all.
 1. Go into the project folder
 2. Open the terminal
 3. Install dependencies: `$ npm i`
-4. Start app: `$ node src/index.js`
-5. Open the url in your browser
+4. Start database: `$ mongod`
+5. Start app: `$ node src/index.js`
+6. Open the url in your browser
 
 ### Main Technologies:
 - Nodejs

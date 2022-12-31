@@ -21,3 +21,36 @@
     -webkit-box-shadow: -4px 7px 5px 0px rgba(0,0,0,0.16);
     -moz-box-shadow: -4px 7px 5px 0px rgba(0,0,0,0.16);
 }
+
+
+/* Sign boxes */
+.sign-card input {
+    border-radius: 17px;
+}
+
+
+.avatar {
+    display:flex;
+    width:100px;
+    height:100px;
+    background-image: url();
+    align-items:center; 
+    justify-content:center;
+    border: 1px solid black;
+    border-radius: 3px;
+    transition: .3s;
+}
+
+.avatar:hover {
+    background-color: rgba(0,0,0, .8);
+    cursor: pointer;
+}
+
+.avatar > p {
+    display: none;
+}
+
+.avatar:hover > p {
+    display: block;
+    color: white;
+}

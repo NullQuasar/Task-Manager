@@ -1,7 +1,54 @@
+{{#if user}}
 <div class="jumbotron mt-4">
-    <h1 class="display-4">Welcome back <\User\> </h1>
-    <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla deleniti tempore quia sit quibusdam reprehenderit?</p>
+    <h1 class="display-4">Welcome back {{user.username}}</h1>
+    <p class="lead">Let's continue with those tasks you left to complete!</p>
     <hr class="my-4">
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime earum nemo maiores nam consectetur, voluptatibus consequuntur veritatis quidem ipsum distinctio.</p>
-    <a href="#" class="btn btn-primary">Hello!</a>
+    <h3>Here are your last tasks: </h3>
+    {{!-- Show most recent tasks --}}
+    <div class="task">
+        <div class="row">
+            {{#each tasks}}
+                <div class="col-md-3">
+                    <div class="card rounded-top border border-primary text-center my-3" style="height: 312px;">
+                        <div class="card-header">
+                            <h4 class="card-title">{{title}}</h4>
+                        </div>
+                        <div class="card-body">
+                            <form method="POST">
+                                <div class="form-group">
+                                    <textarea name="description" class="form-control" readonly="true">{{description}}</textarea>
+                                </div>
+                                <div class="form-group mt-2">
+                                    <input type="date" name="deadline" class="form-control" value="{{deadline}}" readonly="true" />
+                                </div>
+                                <div class="form-group mt-5">
+                                    <input type="hidden" name="_method">
+                                    <button class="btn btn-primary btn-block" formaction="/tasks/edit/{{_id}}">Edit</button>
+                                    <button class="btn btn-danger btn-block" formaction="/tasks/delete/{{_id}}?_method=DELETE">Delete</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            {{/each}}
+        </div>
+    </div>
 </div>
+
+{{else}}
+<div class="position-relative overflow-hidden p-3 p-md-4 m-md-3 text-center">
+    <div class="col-md-5 p-lg-5 mx-auto">
+        <h1 class="display-4">Tasks Manager</h1>
+        <p class="lead fw-normal">We offer you the possibilty to keep track of your own tasks and manage it efficiently.</p>
+        <p class="lead fw-normal">You just need to create an account: </p>
+        <a class="btn btn-outline-primary" href="/users/signup">Sign Up</a>
+    </div>
+</div>
+<hr class="my-2">
+{{!-- <div class="container w-100 my-md-3 ps-md-3 overflow-hidden">
+    <section>
+        <h1>Start</h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe libero eligendi minima quis mollitia similique fugit vel, placeat eius error iste dicta cumque qui modi consectetur, accusamus recusandae eaque quae molestiae. A fuga reiciendis provident nihil sit, reprehenderit quasi facilis accusantium debitis, nam ad. Omnis dicta, ipsum cupiditate sit ab molestias expedita rerum ducimus debitis unde! Quo, dignissimos aut! Vitae commodi quas reprehenderit dolor incidunt? Et doloremque quia ipsum, illo neque voluptate sint vel, maxime enim cumque accusamus labore assumenda. Excepturi, nulla possimus velit perspiciatis ullam non modi voluptates harum ab rem accusamus officia cum vel illum dicta numquam nemo aliquid ut similique impedit accusantium nesciunt qui quis commodi! Placeat eaque aut, iste suscipit minus odio. Quidem inventore optio est recusandae odit laudantium vitae fugit reprehenderit ab aspernatur ex eveniet at repudiandae molestiae, itaque, ipsa aliquam voluptatum ipsum consequuntur. Explicabo, quas fuga dolores doloremque quis ullam repudiandae error laudantium consequuntur.</p>
+    </section>
+</div> --}}
+{{/if}}

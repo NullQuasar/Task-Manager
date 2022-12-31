@@ -1,0 +1,54 @@
+{{#if user}}
+{{!-- Make this --}}
+<div class="row">
+    <div class="col-md-4 mx-auto">
+        <div class="card sign-card">
+            <div class="card-header">
+                <h3 class="card-title">Account</h4>
+            </div>
+            <div class="card-body">
+                <form action="/users/accountUpdate" method="post">
+                    <div class="form-group ms-2 mb-3" style="display: flex; align-items: center;">
+                        <div class="avatar me-3" onclick="changeUserAvatar()">
+                            <p style="">Change</p>
+                        </div>
+
+                        <div class="username ms-3">
+                            <h2>{{ user.username }}</h2>
+                        </div>
+                    </div>
+
+                    <div class="form-group my-2">
+                        <input type="text" class="form-control" name="username" value="{{ user.username }}" placeholder="Name">
+                    </div>
+                    <div class="form-group mb-2">
+                        <input type="email" class="form-control" name="email" value="{{ user.email }}" placeholder="Email">
+                    </div>
+                    <div class="form-group mb-2">
+                        <input type="password" class="form-control" name="passw" placeholder="Password">
+                    </div>
+                    <div class="form-group mb-2">
+                        <input type="password" class="form-control" name="new_passw" placeholder="New password">
+                    </div>
+                    
+                    <div class="d-grid gap-2">
+                        <button class="btn btn-primary btn-block mt-3 mb-2" type="submit">
+                            Update
+                        </button>
+                    </div>
+                </form>
+
+                <form action="/users/logout" method="post">
+                    <div class="d-grid gap-2">
+                        <button class="btn btn-danger btn-block mb-3" type="submit">
+                            Logout
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{{else}}
+<h1>You are not logged in!</h1>
+{{/if}}

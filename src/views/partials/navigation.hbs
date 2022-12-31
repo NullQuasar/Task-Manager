@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
-    <a class="navbar-brand" href="/">Time Manager</a>
+    <a class="navbar-brand" href="/">Tasks Manager</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -9,35 +9,36 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="/">Home</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/tasks">Tasks</a>
-        </li>
-        {{!-- <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
-        </li> --}}
-        {{!-- <li class="nav-item">
-          <a class="nav-link disabled">Disabled</a>
-        </li> --}}
+        {{#if user}}
+        {{else}}
         <li class="nav-item">
           <a class="nav-link" href="/about">About</a>
         </li>
-
-        <li class="nav-item">
-          <a class="nav-link" href="/account">Account</a>
-        </li>
+        {{/if}}
       </ul>
-      <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
+      <ul class="navbar-nav ml-auto">
+        {{#if user}}
+        <li class="nav-item">
+          <a class="nav-link" href="/tasks">Tasks</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/users/account">Account</a>
+        </li>
+        {{else}}
+        <li class="nav-item">
+          <a class="nav-link" href="/users/signin">Sign in</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/users/signup">Sign up</a>
+        </li>
+        {{/if}}
+      </ul>
+      {{#if user}}
+      <form action="/tasks/search" method="POST" class="d-flex">
+        <input id="search_bar" class="form-control me-2" type="search" name="query" placeholder="Search" aria-label="Search">
+        <button id="search_button" class="btn btn-outline-success" type="submit">Search</button>
       </form>
+      {{/if}}
     </div>
   </div>
 </nav>

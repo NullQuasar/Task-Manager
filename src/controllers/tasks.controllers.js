@@ -3,14 +3,30 @@ const Task = require('../models/Task');
 
 // Get
 tasksCtrls.renderTasks = async (req, res) => {
-    const tasks = await Task.find({}).lean();
+    const tasks = await Task.find({ owner: req.user._id }).lean();
+    tasks.forEach(task => {
+        task.deadline = task.deadline.toISOString().split('T')[0];
+    });
+    res.render('tasks/all-tasks', { tasks });
+};
+
+tasksCtrls.renderResults = async (req, res) => {
+    let regex = new RegExp(req.body.query, 'i');
+    
+    let deadline = undefined;
+    if (!isNaN(new Date(req.body.query).getDate())) {
+        deadline = new Date(req.body.query);
+        deadline = deadline.toISOString();
+        console.log(deadline);
+    }
+
+    const tasks = await Task.find({ $or: [ { title: regex }, { description: regex }, { deadline: deadline } ], owner: req.user._id }).lean();
     tasks.forEach(task => {
         task.deadline = task.deadline.toISOString().split('T')[0];
     });
 
-    res.render('tasks/all-tasks', { tasks });
+    res.render('tasks/found-tasks', { tasks });
 };
-
 
 
 // Post
@@ -28,9 +44,10 @@ tasksCtrls.createTaskPost = async (req, res) => {
             deadline = new Date();
             deadline.setDate(today.getDate() + 1);
         }
-        console.log(deadline);
 
-        const task = new Task({title, description, deadline});
+        const owner = req.user._id;
+        console.log(owner);
+        const task = new Task({title, description, deadline, owner});
         await task.save() // Save in db
         
         req.flash('success_msg', 'The task has been created');
@@ -50,7 +67,12 @@ tasksCtrls.editTask = async (req, res) => {
     const task = await Task.findById(req.params.id).lean();
     task.deadline = task.deadline.toISOString().split('T')[0];
 
-    res.render('tasks/edit-task', { task });
+    if (task.owner != req.user._id) {
+        req.flash('error', 'The task does not exists');
+        res.redirect('/tasks');
+    } else {
+        res.render('tasks/edit-task', { task });
+    }
 };
 
 
