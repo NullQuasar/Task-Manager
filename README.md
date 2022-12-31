@@ -3,15 +3,16 @@
 Just add your tasks, its time and the app will do the rest for you.
 
 
-# Enviroment variables
+# Database and enviroment variables
 
+This project works with mongodb, you will need to download [MongoDB commnity edition](https://www.mongodb.com/try/download/community)<br/>
 This app requires you to configure some enviroment variables with the required data. Follow the process below.
 
 1. Go to the src/ folder
 2. Create a new file named `.env`
 3. Inside the file type the following data:
 ```
-HOST=<your_host>
+HOST=127.0.0.1
 DATABASE=TaskManager
 ```
 That's all.
